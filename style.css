@@ -1,0 +1,597 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .mode-icons{
+    float: right;
+    margin-top: -23px;
+    margin-right: 8px;
+    font-size: 17px;
+  }
+  .fa-moon{
+    margin-right: 5px;
+  }
+  .fa-regular{
+    cursor: pointer;
+  }
+  .dropbutton{
+    background-color: rgb(224, 160, 75);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 3px;
+    font-size: 17px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .dropdown{
+    position: relative;
+    margin-top: -30px;
+    margin-right: 60px;
+    float: right;
+  }
+  .dd-content{
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: rgb(104, 104, 104);
+    z-index: 1;
+    width: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
+  }
+  .dd-content a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: block;
+  }
+  .dd-content a:hover{
+    background-color: #ddd;
+  }
+  .dropdown:hover .dd-content{
+    display: block;
+  }
+  .dropdown:hover .dropbutton{
+    background-color: rgb(223, 176, 116);
+  }
+  #header{
+    border-bottom: rgba(0, 0, 0, 0.164) 1px solid;
+    height: 55px;
+  }
+  #heading01{
+    margin-top: 8px;
+    text-decoration: underline;
+    margin-left: 8px;
+    font-style: italic;
+    text-shadow: blueviolet 0px 2px 3px;
+  }
+  .start{
+    outline: none;
+    border: none;
+    background-color: rgb(224, 160, 75);
+    font-size: 23px;
+    font-weight: 500;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  .start:hover{
+    background-color: rgb(223, 176, 116);
+  }
+  .start, .infobox, .quizbox, .resultbox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0px 6px 20px 0 rgba(0, 0, 0, 0.23);
+    transition: all 0.3s ease;
+  }
+  .infobox.activeInfo,
+  .quizbox.activeQuiz,
+  .resultbox.activeResult{
+    z-index: 5;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .infobox{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 550px;
+    background-color: rgb(165, 164, 164);
+    border-radius: 5px;
+  }
+  .infobox .infotitle{
+    height: 55px;
+    width: 100%;
+    border-bottom: solid 1px lightgray;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+  .infobox .infolist{
+    padding: 15px 35px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .infobox .infolist .info{
+    margin: 5px 0;
+    font-size: 17px;
+  }
+  .infobox .infolist .info span{
+    color: black;
+    font-weight: 600;
+  }
+  .infobox .buttons{
+    display: flex;
+    height: 55px;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 35px;
+    border-top: solid 1px lightgray;
+  }
+  .infobox .buttons button{
+    outline: none;
+    border: solid 1px rgb(224, 160, 75);
+    color: white;
+    font-weight: 500;
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+  }
+  .buttons button.quit{
+    color: rgb(224, 160, 75);
+  }
+  .buttons button.restart{
+    color: white;
+    background-color: rgb(224, 160, 75);
+  }
+  .buttons button.quit:hover{
+    color: white;
+    background-color: rgb(224, 160, 75);
+  }
+  .buttons button.restart:hover{
+    background-color: rgb(225, 176, 116);
+  }
+  .time-line{
+    width: 550px;
+  }
+  .quizbox{
+    width: 550px;
+    background-color: rgb(165, 164, 164);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  .quizbox header{
+    position: relative;
+    z-index: 8;
+    height: 70px;
+    padding: 0 30px;
+    background-color: rgb(165, 164, 164);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+  .quizbox header .title{
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .quizbox header .timer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 145px;
+    height: 45px;
+    background-color: lightgray;
+    border: solid 1px rgb(172, 172, 172);
+    border-radius: 5px;
+    padding: 0 8px;
+  }
+  .quizbox header .timer .timetext{
+    font-size: 17px;
+    font-weight: 400;
+    user-select: none;
+  }
+  .quizbox header .timer .timersec{
+    font-size: 18px;
+    font-weight: 500;
+    background-color: gray;
+    height: 30px;
+    width: 45px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    border: solid 1px darkgray;
+    user-select: none;
+  }
+  .quizbox header .time-line{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: red;
+    height: 3px;
+  }
+  .quizbox section{
+    background-color: rgb(165, 164, 164);
+    padding: 25px 30px 20px 30px;
+  }
+  .quizbox section .que-text{
+    font-size: 23px;
+    font-weight: 600;
+  }
+  .quizbox section .optionlist{
+    display: block;
+    padding: 20px 0;
+  }
+  section .optionlist .options{
+    font-size: 17px;
+    background-color: rgb(175, 175, 175);
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  section .optionlist .options:hover{
+    background-color: lightgray;
+    color: black;
+    border: solid 1px rgb(175, 175, 175);
+  }
+  .optionlist .options:last-child{
+    margin-bottom: 0px;
+  }
+  .optionlist .options .icon{
+    height: 26px;
+    width: 26px;
+    border: solid 2px transparent;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+    line-height: 23px;
+    pointer-events: none;
+  }
+  .optionlist .options .icon.tick{
+    color: darkgreen;
+    border-color: darkgreen;
+    background-color: rgb(177, 228, 177);
+  }
+  .optionlist .options .icon.cross{
+    color: darkred;
+    border-color: darkred;
+    background-color: rgb(248, 139, 139);
+  }
+  .optionlist .options.correct{
+    color: rgb(0, 90, 0);
+    border-color: rgb(151, 226, 151);
+    background-color: rgb(151, 226, 151);
+  }
+  .optionlist .options.incorrect{
+    color: rgb(124, 0, 0);
+    border-color: rgb(243, 119, 119);
+    background-color: rgb(243, 119, 119);
+  }
+  .optionlist .options.disabled{
+    pointer-events: none;
+  }
+  .quizbox footer{
+    height: 60px;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .quizbox footer .totalques span{
+    display: flex;
+    user-select: none;
+  }
+  footer .totalques span p{
+    font-weight: 600;
+    padding: 0 5px;
+  }
+  .totalques span p:first-child{
+    padding-left: 0px;
+  }
+  footer .nextbtn{
+    display: none;
+    height: 40px;
+    padding: 0 13px;
+    font-size: 17px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    background-color: rgb(224, 160, 75);
+    border: solid 1px rgb(224, 160, 75);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  footer .nextbtn:hover{
+    background-color: rgb(225, 176, 116);
+    border-color: rgb(225, 176, 116);
+  }
+  .resultbox{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: rgb(165, 164, 164);
+    width: 450px;
+    padding: 25px 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  .resultbox .icon{
+    font-size: 100px;
+    color: black;
+    margin-bottom: 10px;
+  }
+  .resultbox .complete-text
+  {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .resultbox .scoretext span{
+    display: flex;
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .scoretext span p{
+    font-weight: 600;
+    padding: 0 4px;
+  }
+  .resultbox .buttons{
+    display: flex;
+    margin: 20px 0;
+  }
+  .resultbox .buttons button{
+    margin: 0 10px;
+    height: 40px;
+    padding: 0 20px;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: solid 1px rgb(224, 160, 75);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  @media screen and (max-width: 575px) {
+    #header{
+      font-size: 11px;
+      height: 40px;
+    }
+    .dropbutton{
+      font-size: 13px;
+      padding: 6px;
+      margin-top: 6px;
+      margin-right: -48px;
+    }
+    .mode-icons{
+      margin-top: -19px;
+    }
+    .infobox, .quizbox{
+      width: 450px;
+    }
+    .time-line{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 475px) {
+    .infobox, .quizbox{
+      width: 400px;
+    }
+    .resultbox{
+    width: 400px;
+    }
+    .resultbox .scoretext span{
+      font-size: 15.5px;
+      font-weight: 500;
+    }
+    .time-line{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 415px) {
+    .infobox, .quizbox{
+      width: 350px;
+    }
+    .resultbox{
+    width: 350px;
+    }
+    .resultbox .scoretext span{
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .resultbox .complete-text
+    {
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .resultbox .buttons button{
+      font-size: 16px;
+    }
+    .time-line{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    #header{
+      font-size: 10px;
+      height: 40px;
+    }
+    .dropbutton{
+      font-size: 11px;
+      margin-top: 10px;
+    }
+    .mode-icons{
+      font-size: 13px;
+      margin-top: -15px;
+    }
+    .infobox, .quizbox{
+      width: 335px;
+    }
+    .resultbox{
+    width: 335px;
+    }
+    .resultbox .icon{
+      font-size: 75px;
+    }
+    .resultbox .scoretext span{
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .resultbox .complete-text
+    {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .resultbox .buttons button{
+      font-size: 15px;
+    }
+    .time-line{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    #header{
+      font-size: 9px;
+      height: 35px;
+    }
+    .infobox, .quizbox{
+      width: 300px;
+    }
+    .resultbox{
+    width: 300px;
+    }
+    .resultbox .icon{
+      font-size: 70px;
+    }
+    .resultbox .scoretext span{
+      font-size: 10.5px;
+      font-weight: 500;
+    }
+    .resultbox .complete-text
+    {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .resultbox .buttons button{
+      font-size: 12px;
+    }
+    .time-line{
+      display: none;
+    }
+    footer .nextbtn{
+      font-size: 15px;
+    }
+    .totalques{
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    #header{
+      font-size: 8px;
+      height: 35px;
+    }
+    .infobox, .quizbox{
+      width: 290px;
+    }
+    .resultbox{
+    width: 290px;
+    }
+    .resultbox .icon{
+      font-size: 65px;
+    }
+    .resultbox .scoretext span{
+      font-size: 10px;
+      font-weight: 500;
+    }
+    .resultbox .complete-text
+    {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .resultbox .buttons button{
+      font-size: 11px;
+    }
+    .time-line{
+      display: none;
+    }
+    footer .nextbtn{
+      font-size: 13px;
+    }
+    .totalques{
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width: 280px) {
+    #header{
+      font-size: 7.5px;
+      height: 35px;
+    }
+    .infobox, .quizbox{
+      width: 270px;
+    }
+    .resultbox{
+    width: 270px;
+    }
+    .resultbox .icon{
+      font-size: 60px;
+    }
+    .resultbox .scoretext span{
+      font-size: 9px;
+      font-weight: 500;
+    }
+    .resultbox .complete-text
+    {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .resultbox .buttons button{
+      font-size: 8px;
+      padding: 0 17px;
+    }
+    .time-line{
+      display: none;
+    }
+    footer .nextbtn{
+      font-size: 13px;
+    }
+    .totalques{
+      font-size: 13px;
+    }
+  }
